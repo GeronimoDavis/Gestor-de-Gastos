@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 
 //rutas accesibles solo para usuarios no autenticados
 
@@ -22,4 +23,10 @@ Route::middleware('auth')->group(function() {
     })->name('dashboard');
 
    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+   //rutas de categorias 
+    Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+    Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+    Route::delete('/categories', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
 });
