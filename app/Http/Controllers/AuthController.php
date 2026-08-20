@@ -18,7 +18,7 @@ class AuthController extends Controller
     public function register(Request $request){
 
         $credentials = $request->validate([
-            'name' => 'required|string|max255',
+            'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
         ]);
@@ -49,14 +49,29 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
+        //validamos las credenciales 
         if(Auth::attempt($credentials, $request->remember)){
+            //Este método elimina el ID de sesión anónimo anterior(usuario no logeado) y genera un identificador de sesión completamente nuevo y cifrado
             $request->session()->regenerate();
 
             return redirect()->intended('dashboard');
         }
 
+        //volvemos a /login
         return back()->withErrors([
             'email' => 'Las credenciales proporcionadas no coinciden con nuestros registros.',
-        ])->onlyInput('email');
+        ])->onlyInput('email');//guardamso email en la session
+    }
+
+    //Cierre de session
+    public function logout(Request $request){
+        //Eliminamos el identificador del usuario guardado en la sesión activa y borramos las cookies
+        Auth::logout();
+
+        //Aca se vacía por completo todos los datos almacenados en la sesión actual y destruye el ID de sesión del servidor
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login');
     }
 }
