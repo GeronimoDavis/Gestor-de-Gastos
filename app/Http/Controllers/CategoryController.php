@@ -14,4 +14,18 @@ class CategoryController extends Controller
 
         return view('categories.index', compact('categories'));
     }
+
+    // Guardar una nueva categoría
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:50',
+            'type' => 'required|in:expense,income',
+        ]);
+
+        // Guardamos asociando automáticamente al usuario autenticado
+        $request->user()->categories()->create($validated);
+
+        return back()->with('success', 'Categoría creada con éxito.');
+    }
 }
