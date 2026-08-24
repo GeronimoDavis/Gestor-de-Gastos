@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -27,5 +27,19 @@ class CategoryController extends Controller
         $request->user()->categories()->create($validated);
 
         return back()->with('success', 'Categoría creada con éxito.');
+    }
+    //aca el $category es una instancia de la clase Category que se obtiene automáticamente gracias al 
+    //route model binding de Laravel, gracias a la ruta que definimos en web.php, Laravel automáticamente busca la categoría por su id y la inyecta en el método destroy.
+    public function destroy(Request $request, Category $category){
+        //Verificar que la categoria pertenezca al usuario loguado
+        if($category->user_id !== $request->user()->id){
+            abort(403);
+        }   
+        
+        $category->delete();
+
+        return back()->with('success', 'Categoría eliminada.');
+
+
     }
 }

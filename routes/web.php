@@ -27,6 +27,6 @@ Route::middleware('auth')->group(function() {
    //rutas de categorias 
     Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
     Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
-    Route::delete('/categories', [CategoryController::class, 'destroy'])->name('categories.destroy');
+    Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
 });
