@@ -13,7 +13,7 @@
         <p style="color: green;">{{ session('success') }}</p>
     @endif
 
-    @if($errors->eny())
+    @if ($errors->any())
         <ul style="color: red;">
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
