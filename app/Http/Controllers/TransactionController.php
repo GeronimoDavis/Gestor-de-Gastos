@@ -30,7 +30,7 @@ class TransactionController extends Controller
             'transaction_date' => 'required|date',
             'description' => 'nullable|string|max:250',
             'type' => 'required|in:expense,income',
-    ]);
+        ]);
 
         $request->user()->transactions()->create($validated);
 
