@@ -12,5 +12,7 @@
         @csrf
         <button type="submit">Cerrar Sesión</button>
     </form>
+    <br>
+    <a href="{{route('transaction.index')}}"><button>Registrar una Transaccion</button></a>
 </body>
 </html>

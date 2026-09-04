@@ -19,7 +19,7 @@ Route::middleware('guest')->group(function (){
 //Rutas protegidas solo para usuarios autenticados
 
 Route::middleware('auth')->group(function() {
-    Route::get('/dashboard', function(){
+    Route::get('/', function(){
         return view('dashboard');
     })->name('dashboard');
 
@@ -33,6 +33,6 @@ Route::middleware('auth')->group(function() {
     //rutas de transactions 
     Route::get('/transactions', [TransactionController::class, 'index'])->name('transaction.index');
     Route::post('/transactions', [TransactionController::class, 'store'])->name('transaction.store');
-    Route::delete('/transactions/{transaction}', [TransactionController::class, 'delete'])->name('transaction.delete');
+    Route::delete('/transactions/{transaction}', [TransactionController::class, 'destroy'])->name('transaction.destroy');
 
-});
+}); 

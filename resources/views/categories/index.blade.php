@@ -6,7 +6,7 @@
 </head>
 <body>
 
-    <p><a href="{{ route('dashboard') }}">← Volver al Dashboard<</a></p>
+    <a href="{{ route('dashboard') }}"><button>← Volver al Dashboard</button></a>
     <h1>Mis Categorías</h1>
 
     @if (session('success'))

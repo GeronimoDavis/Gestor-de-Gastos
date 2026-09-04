@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use app\Models\Transaction;
+use App\Models\Transaction;
 
 class TransactionController extends Controller
 {
     public function index(Request $request){
         //Obtenemos las transacciones del usuario logueado, cargando su categoría buscando en el modelos de transacctions 
-        //el metodo llamado exactamente 'category' con with
+        //el metodo llamado exactamente 'category' con with y mete en el objeto transacciones el objeto categoria
         $transactions = $request->user()
             ->transactions()
             ->with('category')
