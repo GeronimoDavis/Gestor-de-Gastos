@@ -75,6 +75,7 @@
         </tr>
      <tbody>
         @foreach ($transactions as $transaction)
+        <tr>
             <td>{{ $transaction->category->name }}</td>
             <td>{{ $transaction->amount }}</td>
             <td>
@@ -93,6 +94,7 @@
                     <button type="submit" onclick="return confirm('¿Seguro que querés eliminarla?')">Eliminar</button>
                 </form>
             </td>
+        </tr>
         @endforeach
      </tbody>
 </table>
