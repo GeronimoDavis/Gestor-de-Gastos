@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -22,6 +23,32 @@ class DashboardController extends Controller
         //hacemos pero no ejecutamos(->get()) la query para filtrar transacciones del usuario por el rango del mes
         $baseQuery = $user->transactions()
             ->whereBetween('transaction_date', [$startDate,$endDate]);
+
+        //clonamos la consulta de rango de fechas para no modificarla y calculamos gatos, ingresos y hacemos el balance
+        $totalIncome = (clone $baseQuery)->where('type', 'income')->sum('amount');   
+        $totalExpense = (clone $baseQuery)->where('type', 'expense')->sum('amount');//sum tambien ejecuta la consulta
+        
+        $netBalance = $totalIncome - $totalExpense;
+
+        //clonamos la consulta y traemos las categorias en las que mas se gasto
+        $topExpenses = (clone $baseQuery)->where('type', 'expense')
+        ->with('category')
+        ->orderByDesc('amount')
+        ->take(5)
+        ->get();
+
+        //Gastos agrupados por categoría (ordenados de mayor a menor gasto)
+        $expensesByCategory = (clone $baseQuery)
+            ->where('type', 'expense')
+            ->select('category_id', DB::raw('SUM(amount) as total'))
+            ->groupBy('category_id')
+            ->with('category')
+            ->orderByDesc('total')
+            ->get();
+
+        
+
+
 
 
 
