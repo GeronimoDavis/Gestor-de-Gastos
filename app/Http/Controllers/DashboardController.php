@@ -46,7 +46,20 @@ class DashboardController extends Controller
             ->orderByDesc('total')
             ->get();
 
-        
+        //Preparar arreglos simples para pasárselos al gráfico
+        $chartLabels = $expensesByCategory->map(fn($item) => $item->category->name ?? 'Sin categoría');
+        $chartData = $expensesByCategory->pluck('total');
+
+        return view('dashboard', compact(
+            'selectedMonth',
+            'totalIncome',
+            'totalExpense',
+            'netBalance',
+            'topExpenses',
+            'expensesByCategory',
+            'chartLabels',
+            'chartData'
+        ));
 
 
 
