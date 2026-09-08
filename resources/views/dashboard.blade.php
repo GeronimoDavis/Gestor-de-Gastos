@@ -2,7 +2,16 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title>
+    <title>Dashboard - Gestor de Gastos</title>
+    <!-- Cargamos Chart.js desde su CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        .flex-container { display: flex; gap: 20px; margin-top: 20px; }
+        .card { border: 1px solid #ccc; padding: 15px; border-radius: 8px; flex: 1; }
+        .net-positive { color: green; }
+        .net-negative { color: red; }
+    </style>
 </head>
 <body>
     <h1>Bienvenido, {{ Auth::user()->name }}!</h1>
