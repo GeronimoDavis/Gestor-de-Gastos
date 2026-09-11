@@ -40,13 +40,13 @@ class DashboardController extends Controller
         //Gastos agrupados por categoría (ordenados de mayor a menor gasto)
         $expensesByCategory = (clone $baseQuery)
             ->where('type', 'expense')
-            ->select('category_id', DB::raw('SUM(amount) as total'))
+            ->select('category_id', DB::raw('SUM(amount) as total'))//usamos el facade DB y el metodo raw de la clase real con el alias 'db'(DatabaseManager) guardada en el Service Container
             ->groupBy('category_id')
             ->with('category')
             ->orderByDesc('total')
             ->get();
 
-        //Preparar arreglos simples para pasárselos al gráfico
+        //Preparar arreglos simples para pasárselos al gráfico ya que Chart.js no sabe leer colecciones de PHP ni objetos anidados
         $chartLabels = $expensesByCategory->map(fn($item) => $item->category->name ?? 'Sin categoría');
         $chartData = $expensesByCategory->pluck('total');
 

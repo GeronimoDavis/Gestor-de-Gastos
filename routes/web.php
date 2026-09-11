@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\DashboardController;
 
 //rutas accesibles solo para usuarios no autenticados
 
@@ -19,9 +20,7 @@ Route::middleware('guest')->group(function (){
 //Rutas protegidas solo para usuarios autenticados
 
 Route::middleware('auth')->group(function() {
-    Route::get('/', function(){
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
