@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard - Gestor de Gastos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     <!-- Cargamos Chart.js desde su CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -12,10 +13,10 @@
     <!-- 1. Barra Superior: Filtro por Mes y Navegación -->
     <h2>Dashboard Financiero</h2>
 
-    <from action="{{route('dashboard')}}" method="GET">
+    <form action="{{route('dashboard')}}" method="GET">
         <label for="month">Filtrar por mes:</label>
         <input type="month" id="month" name="month" value="{{$selectedMonth}}" onchange="this.form.submit()"/>
-    </from>
+    </form>
 
     <hr>
 
@@ -84,7 +85,42 @@
 
     <hr>
 
+    <div class="chart-container">
+        <h3 class="chart-title">Distribucion de gastos</h3>
+        @if($expensesByCategory->isEmpty())
+            <p class="no-data-text">No hay datos suficientes para graficar este mes.</p>
+        @else
+            <canvas id="expensesChart"></canvas> <!--Imprime el elemento <canvas> funciona como un "pizarrón en blanco" donde JavaScript puede dibujar formas dinámicas-->
+        @endif
+    </div>
     
-
+    <script>
+        //trasformamos en arrays(json) JS nativos
+        const chartLabels = JSON.parse('@json($chartLabels)');
+        const chartData = JSON.parse('@json($chartData)');
+        if (chartLabels.length > 0) {
+            const ctx = document.getElementById('expensesChart').getContext('2d');//busca el canvas y activa el contexto de dibujo en 2 dimensiones
+            new Chart(ctx, {
+                type: 'doughnut',//tipo de grafico
+                data: {
+                    labels: chartLabels,// Nombres de las categorías
+                    datasets: [{
+                        label: 'Gasto Total ($)',// Montos numéricos: [1500, 450] (se vinculan por posición con 'labels')
+                        data: chartData,
+                        borderWidth: 1
+                    }]
+                },
+                // OPCIONES DE DISEÑO Y COMPORTAMIENTO
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'// Muestra las referencias de colores (la leyenda) abajo del gráfico
+                        }
+                    }
+                }
+            });
+        }
+    </script>  
 </body>
 </html>
