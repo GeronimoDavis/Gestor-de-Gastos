@@ -9,9 +9,26 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    @if (session('success'))
+        <p style="color: green;">{{ session('success') }}</p>
+    @endif
+
+    @if ($errors->any())
+        <ul style="color: red;">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
     
     <!-- 1. Barra Superior: Filtro por Mes y Navegación -->
     <h2>Dashboard Financiero</h2>
+    
+    <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+        @csrf
+        <button type="submit">Desloguearse</button>
+    </form>
+    
 
     <form action="{{route('dashboard')}}" method="GET">
         <label for="month">Filtrar por mes:</label>

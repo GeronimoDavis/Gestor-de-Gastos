@@ -54,7 +54,7 @@ class AuthController extends Controller
             //Este método elimina el ID de sesión anónimo anterior(usuario no logeado) y genera un identificador de sesión completamente nuevo y cifrado
             $request->session()->regenerate();
 
-            return redirect()->intended('dashboard');
+            return redirect()->intended(route('dashboard'));
         }
 
         //volvemos a /login
