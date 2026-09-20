@@ -9,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+
     @if (session('success'))
         <p style="color: green;">{{ session('success') }}</p>
     @endif
@@ -20,27 +21,31 @@
             @endforeach
         </ul>
     @endif
-    
-    <!-- 1. Barra Superior: Filtro por Mes y Navegación -->
-    <h2>Dashboard Financiero</h2>
-    
-    <form method="POST" action="{{ route('logout') }}" style="display: inline;">
-        @csrf
-        <button type="submit">Desloguearse</button>
-    </form>
-    
 
-    <form action="{{route('dashboard')}}" method="GET">
-        <label for="month">Filtrar por mes:</label>
-        <input type="month" id="month" name="month" value="{{$selectedMonth}}" onchange="this.form.submit()"/>
-    </form>
+    <header class="main-header">
+        <h1>Bienvenido, {{ Auth::user()->name }}</h1>
+        <div class="header-top">
+            <!-- 1. Barra Superior: Filtro por Mes y Navegación -->
+            <h2>Dashboard Financiero</h2>
 
-    <hr>
+            <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+                @csrf
+                <button type="submit">Desloguearse</button>
+            </form>
+        </div>
+        
+        <div class="header-controls">
+            <form action="{{route('dashboard')}}" method="GET">
+                <label for="month">Filtrar por mes:</label>
+                <input type="month" id="month" name="month" value="{{$selectedMonth}}" onchange="this.form.submit()"/>
+            </form>
 
-    <div>
-        <a href="{{route('transaction.index')}}"><button>+ Nueva Transacción</button></a>
-        <a href="{{route('categories.index')}}"><button>+ Nueva Categoría</button></a>
-    </div>
+             <div class="actions-bar">
+                <a href="{{route('transaction.index')}}"><button>+ Nueva Transacción</button></a>
+                <a href="{{route('categories.index')}}"><button>+ Nueva Categoría</button></a>
+            </div>
+        </div>
+    </header>
 
     <hr>
 
