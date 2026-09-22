@@ -30,19 +30,19 @@
 
             <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                 @csrf
-                <button type="submit">Desloguearse</button>
+                <button type="submit" class="btn btn-logout">Desloguearse</button>
             </form>
         </div>
         
         <div class="header-controls">
-            <form action="{{route('dashboard')}}" method="GET">
+            <form action="{{route('dashboard')}}" method="GET" class="filter-form">
                 <label for="month">Filtrar por mes:</label>
                 <input type="month" id="month" name="month" value="{{$selectedMonth}}" onchange="this.form.submit()"/>
             </form>
 
              <div class="actions-bar">
-                <a href="{{route('transaction.index')}}"><button>+ Nueva Transacción</button></a>
-                <a href="{{route('categories.index')}}"><button>+ Nueva Categoría</button></a>
+                <a href="{{route('transaction.index')}}" class="btn btn-primary">+ Nueva Transacción</a>
+                <a href="{{route('categories.index')}}" class="btn btn-secondary">+ Nueva Categoría</a>
             </div>
         </div>
     </header>
