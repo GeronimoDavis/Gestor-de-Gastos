@@ -47,28 +47,29 @@
         </div>
     </header>
 
-    <hr>
 
-    <div class="cards-container">
-        <div class="card">
-            <h3>Ingresos del mes</h3>
-            <p class="card-value income">${{number_format($totalIncome, 2)}}</p>
+    <section class="cards-container">
+
+        <div class="cards-container">
+            <div class="card card-income">
+                <span class="card-title">Ingresos del Mes</span>
+                <p class="card-value income">${{number_format($totalIncome, 2)}}</p>
+            </div>
+
+            <div class="card card-expense">
+                <span class="card-title">Gastos del Mes</span>
+                <p class="card-value expense">${{ number_format($totalExpense, 2) }}</p>
+            </div>
+
+            <div class="card card-balance">
+                <span class="card-title">Balance Neto</span>
+                <p class="card-value {{ $netBalance >= 0 ? 'positive' : 'negative' }}">
+                    ${{ number_format($netBalance, 2) }}
+                </p>
+            </div>
         </div>
+    </section>
 
-        <div class="card">
-            <h3>Gastos del Mes</h3>
-            <p class="card-value expense">${{ number_format($totalExpense, 2) }}</p>
-        </div>
-
-        <div class="card">
-            <h3>Balance Neto</h3>
-            <p class="card-value {{ $netBalance >= 0 ? 'positive' : 'negative' }}">
-                ${{ number_format($netBalance, 2) }}
-            </p>
-        </div>
-    </div>
-
-    <hr>
 
     <div class="lista-container">
         <div class="list-column">
