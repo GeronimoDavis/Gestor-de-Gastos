@@ -70,52 +70,59 @@
         </div>
     </section>
 
-
-    <div class="lista-container">
-        <div class="list-column">
-            <h3>Top 5 gastos mas Grandes</h3>
-            @if($topExpenses->isEmpty())
-                <p>No hay gastos registrados en este mes.</p>
-            @else
-                <ul>
-                    @foreach($topExpenses as $expense)
-                    <li>
-                        <strong>${{ number_format($expense->amount, 2) }}</strong> - 
-                        {{ $expense->category->name ?? 'Sin categoría' }}
-                        <small>({{ $expense->transaction_date }})</small>
-                    </li>
-                    @endforeach
-                </ul>
-            @endif
-        </div>
-
-        <div class="list-column">
-            <h3>Gastos por Categoría</h3>
-            @if($expensesByCategory->isEmpty())
-                <p>No hay datos para mostrar.</p>
-            @else
-                <ul>
-                    @foreach($expensesByCategory as $item)
-                        <li>
-                            <strong>{{ $item->category->name ?? 'Sin categoría' }}:</strong> 
-                            ${{ number_format($item->total, 2) }}
+    <section class="lists-container">
+        <!-- Lista A: Top 5 Gastos Más Grandes -->
+            <div class="list-card">
+                <h3 class="list-title">Top 5 gastos mas Grandes</h3>
+                @if($topExpenses->isEmpty())
+                    <p class="empty-state">No hay gastos registrados en este mes.</p>
+                @else
+                    <ul class="data-list">
+                        @foreach($topExpenses as $expense)
+                        <li class="data-item">
+                           <div class="item-info">
+                                <span class="item-category">{{ $expense->category->name ?? 'Sin categoría' }}</span>
+                                <small class="item-date">{{ $expense->transaction_date }}</small>
+                            </div>
+                            <span class="item-amount text-expense">
+                                -${{ number_format($expense->amount, 2) }}
+                            </span>
                         </li>
-                    @endforeach
-                </ul>
-            @endif
-        </div>
-    </div>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
 
-    <hr>
+            <!-- Lista B: Gastos Agrupados por Categoría -->
+            <div class="list-card">
+                <h3 class="list-title">Gastos por Categoría</h3>
+                @if($expensesByCategory->isEmpty())
+                    <p class="empty-state">No hay datos para mostrar.</p>
+                @else
+                    <ul class="data-list">
+                        @foreach($expensesByCategory as $item)
+                            <li class="data-item">
+                                <span class="item-category">{{ $item->category->name ?? 'Sin categoría' }}</span>
+                                <span class="item-amount">
+                                    ${{ number_format($item->total, 2) }}
+                                </span>
+                            </li>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
+    </section>
 
-    <div class="chart-container">
-        <h3 class="chart-title">Distribucion de gastos</h3>
+    <section class="chart-section">
+        <h3 class="list-title text-center">Distribucion de gastos</h3>
         @if($expensesByCategory->isEmpty())
-            <p class="no-data-text">No hay datos suficientes para graficar este mes.</p>
+            <p class="empty-state text-center">No hay datos suficientes para graficar este mes.</p>
         @else
-            <canvas id="expensesChart"></canvas> <!--Imprime el elemento <canvas> funciona como un "pizarrón en blanco" donde JavaScript puede dibujar formas dinámicas-->
+            <div class="chart-container">
+                <canvas id="expensesChart"></canvas>
+            </div> <!--Imprime el elemento <canvas> funciona como un "pizarrón en blanco" donde JavaScript puede dibujar formas dinámicas-->
         @endif
-    </div>
+    </section>
     
     <script>
         //trasformamos en arrays(json) JS nativos
