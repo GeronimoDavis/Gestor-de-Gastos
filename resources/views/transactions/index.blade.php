@@ -8,7 +8,7 @@
 </head>
 <body>  
 
-<div class="page-header">
+<div class="page-container">
     <!--Encabezado de Página -->
     <header class="page-header">
         <a href="{{ route('dashboard') }}" class="btn btn-secondary">← Volver al Dashboard</a>
