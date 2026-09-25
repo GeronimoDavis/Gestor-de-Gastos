@@ -110,3 +110,73 @@ body {
     overflow-x: auto;
 }
 
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.data-table th{
+    background-color: #c0c3c6;
+    color: #475569;
+    padding: 12px;
+    font-size: 0.95em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.data-table td{
+    padding: 5px;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 1em;
+    color: #3b341e;
+}
+
+.data-table tbody tr:hover {
+    background-color: #eaecee;
+}
+
+.amount-cell {
+    font-weight: 700;
+}
+
+
+/*Badges de Estado y Acciones*/
+
+.badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.badge-expense { background-color: #f87171; color: white; }
+.badge-income { background-color: #34d399; color: white; }
+
+.btn-delete {
+    background: none;
+    border: none;
+    color: #ed1313;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1em;
+}
+
+.btn-delete:hover {
+    color: #615d5d;
+}
+
+/*Alertas de Estado*/
+.alert {
+    padding: 12px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+}
+
+.alert-success { background-color: #d1fae5; color: #065f46; }
+.alert-danger { background-color: #fee2e2; color: #991b1b; }
+.alert ul { margin-left: 20px; }
+
