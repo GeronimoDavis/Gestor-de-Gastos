@@ -21,6 +21,7 @@ body {
     margin-bottom: 20px;
 }
 
+
 .header-top {
     display: flex; /* Le dice a la caja o div .header-top: Tus hijos directos ahora se colocan en fila horizontal */
     justify-content: space-between;
@@ -53,6 +54,11 @@ body {
     display: inline-block; /* Asegura que los <a> se comporten como elementos en línea o botones */
 }
 
+.btn-logout{
+    background-color: #dd3e3e;
+    color: white;
+}
+
 .btn-primary {
     background-color: #5676cf;
     color: white;
@@ -62,6 +68,7 @@ body {
     background-color: #5676cf;
     color: white;
 }
+
 
 /* Estilos para el formulario de filtro de mes */
 

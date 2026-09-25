@@ -42,8 +42,71 @@ body {
     display: inline-block;
 }
 
-.btn-primary { background-color: #2563eb; color: white; }
-.btn-primary:hover { background-color: #1d4ed8; }
+.btn-primary { background-color: #5676cf; color: white; }
+.btn-primary:hover { background-color: #5676cf; }
 
 .btn-secondary { background-color: #64748b; color: white; }
 .btn-secondary:hover { background-color: #475569; }
+
+/*Tarjetas de Contenido*/
+
+.card-section{
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 25px;
+}
+
+.section-title{
+    font-size: 1.2em;
+    color: #1e293b;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #a6b2be;
+
+}
+
+/*Formulario con CSS Grid*/
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1; /*Forza al campo de la Descripción a ocupar todo el ancho horizontal del formulario*/
+}
+
+.form-control {
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+    font-size: 0.95em;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-control:focus {
+    border-color: #2563eb;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/*Tabla de Datos*/
+
+.table-container{
+    overflow-x: auto;
+}
+
