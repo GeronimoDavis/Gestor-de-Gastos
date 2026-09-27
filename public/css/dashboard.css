@@ -21,6 +21,14 @@ body {
     margin-bottom: 20px;
 }
 
+.date {
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+    font-size: 0.95em;
+    outline: none;
+    transition: border-color 0.2s;
+}
 
 .header-top {
     display: flex; /* Le dice a la caja o div .header-top: Tus hijos directos ahora se colocan en fila horizontal */

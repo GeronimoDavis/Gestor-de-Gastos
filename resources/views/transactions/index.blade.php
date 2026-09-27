@@ -21,7 +21,7 @@
                 {{ session('success') }}
         </div>
     @endif
-
+    
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -40,6 +40,7 @@
             @csrf
 
             <div class="form-grid">
+                
                 <div class="form-group">
                     <label for="category_id">Categoría:</label>
                     <select id="category_id" name="category_id" class="form-control" required>
@@ -72,6 +73,7 @@
                     <input type="text" id="description" name="description" placeholder="Ej: Compras del mes" class="form-control" />
                 </div>
             </div>
+            
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary">Guardar Transacción</button>
             </div>

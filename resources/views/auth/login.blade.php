@@ -7,41 +7,48 @@
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
 <body>
-    @if ($errors->any())
-        <ul style="color: red;">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    @endif
 
-    <h2 >Iniciar Sesión</h2>
+    <main class="login-card">
 
-    <section class="login-container">
-        <form action="{{ route('login') }}" method="POST">
-            @csrf
-            <div class="login-form">
-                <div>
-                    <label class="form-label">Email:</label><br>
-                    <input class="form-input" type="email" name="email" value="{{ old('email') }}" required>
-                </div>
-                <br>
-                <div>
-                    <label class="form-label">Contraseña:</label><br>
-                    <input class="form-input" type="password" name="password" required>
-                </div>
-                <br>
-                <div>
-                    <label>
-                        <input class="form-checkbox" type="checkbox" name="remember"> Recordarme
-                    </label>
-                </div>
-                <br>
-                <button class="btn btn-primary" type="submit">Ingresar</button>
+        <h2 class="login-title">Iniciar Sesión</h2>
+
+        <!-- Alertas de Error -->
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
-        </form>
-    </section>
-    <p>¿No tenés cuenta? <a href="{{ route('register') }}">Registrate acá</a></p>
+        @endif
+            <!-- Formulario -->
+        <form action="{{ route('login') }}" method="POST" class="login-form">
+            @csrf
 
+            <div class="form-group">
+                <label for="email" class="form-label">Email:</label>
+                <input id="email" class="form-input" type="email" name="email" value="{{ old('email') }}" required placeholder="tuemail@ejemplo.com">
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="form-label">Contraseña:</label>
+                <input id="password" class="form-input" type="password" name="password" required>
+            </div>
+
+            <div class="form-group form-remember">
+                <label class="checkbox-label">
+                    <input class="form-checkbox" type="checkbox" name="remember">
+                    <span>Recordarme</span>
+                </label>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Ingresar</button>
+        </form>
+
+        <p class="register-link">
+            ¿No tenés cuenta? <a href="{{ route('register') }}">Registrate acá</a>
+        </p>
+    </main>
 </body>
 </html>

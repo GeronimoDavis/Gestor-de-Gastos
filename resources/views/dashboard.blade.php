@@ -37,7 +37,7 @@
         <div class="header-controls">
             <form action="{{route('dashboard')}}" method="GET" class="filter-form">
                 <label for="month">Filtrar por mes:</label>
-                <input type="month" id="month" name="month" value="{{$selectedMonth}}" onchange="this.form.submit()"/>
+                <input class="date" type="month" id="month" name="month" value="{{$selectedMonth}}" onchange="this.form.submit()"/>
             </form>
 
              <div class="actions-bar">
