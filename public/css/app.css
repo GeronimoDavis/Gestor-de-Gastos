@@ -817,6 +817,16 @@ a:hover {
     .data-table td {
         padding: 8px 12px;
     }
+
+    /* Apilar botones de acción en móviles */
+    .dashboard-header .flex.gap-sm {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .dashboard-header .flex.gap-sm .btn {
+        width: 100%;
+    }
 }
 
 /* ============================================
